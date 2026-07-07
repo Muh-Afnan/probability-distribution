@@ -196,3 +196,38 @@ class Exponential:
         for _ in range(n_samples):
             samples.append(-math.log(random.random()) / self.lam)
         return samples
+
+
+class Uniform:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def PMF(self, X):
+        raise NotImplementedError("PMF is not defined for continuous distributions.")
+
+    def PDF(self, X):
+        if self.a <= X <= self.b:
+            return 1 / (self.b - self.a)
+        else:
+            return 0
+
+    def mean(self):
+        return (self.a + self.b) / 2
+
+    def variance(self):
+        return ((self.b - self.a) ** 2) / 12
+
+    def std(self):
+        return (self.variance()) ** 0.5
+
+    def CDF(self, X):
+        if X < self.a:
+            return 0
+        elif self.a <= X <= self.b:
+            return (X - self.a) / (self.b - self.a)
+        else:
+            return 1
+
+    def sample(self, n_samples):
+        return [self.a + random.random() * (self.b - self.a) for _ in range(n)]
