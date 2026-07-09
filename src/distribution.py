@@ -230,4 +230,4 @@ class Uniform:
             return 1
 
     def sample(self, n_samples):
-        return [self.a + random.random() * (self.b - self.a) for _ in range(n)]
+        return [self.a + random.random() * (self.b - self.a) for _ in range(n_samples)]
